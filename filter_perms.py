@@ -53,3 +53,4 @@ def filter_perms(exact, inexact, pattern):
             filtered.append(p)
 
     return filtered
+
