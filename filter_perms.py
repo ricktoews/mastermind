@@ -31,7 +31,10 @@ def check_inexact(inexact, perm, pattern):
     for i in range(pattern_len):
         if pattern[i] != '_':
             if pattern[i] != perm[i] and pattern[i] in perm:
+                ndx = perm.index(pattern[i])
+                perm[ndx] = '_'
                 count += 1
+
     if count == inexact:
         return True
     else:
