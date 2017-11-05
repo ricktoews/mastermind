@@ -1,7 +1,12 @@
 'use strict';
 
 var permutations = require('./perms.js');
-console.log('permutations', permutations);
+/*
+var permutations = {
+    build: build
+};
+console.log('loaded filter_perms');
+*/
 var perms = permutations.build(6, 4);
 
 function check_exact(exact, perm, pattern) {
@@ -15,7 +20,7 @@ function check_exact(exact, perm, pattern) {
             count += 1;
 	}
     }
-    if (count == exact) {
+    if (count === exact) {
         return true;
     } else {
         return false;
@@ -35,10 +40,10 @@ function check_inexact(inexact, perm, pattern) {
         }
     }
     var count = 0;
-    for (let i = 0; i < patter_len; i++) {
+    for (let i = 0; i < pattern_len; i++) {
         if (pattern[i] !== '_') {
             if (pattern[i] !== perm[i] && perm.indexOf(pattern[i]) !== -1) {
-                let ndx = perm.index(pattern[i]);
+                let ndx = perm.indexOf(pattern[i]);
                 perm[ndx] = '_';
                 count++;
             }
@@ -55,7 +60,7 @@ function check_inexact(inexact, perm, pattern) {
 function is_match(exact, inexact, perm, pattern) {
     var exact_match = check_exact(exact, perm, pattern);
     if (exact_match) {
-        inexact_match = check_inexact(inexact, perm, pattern);
+        var inexact_match = check_inexact(inexact, perm, pattern);
     }
 
     return exact_match && inexact_match;
@@ -71,3 +76,10 @@ function filter_perms(exact, inexact, pattern) {
 
     return filtered;
 }
+
+/*
+To test:
+
+var results = filter_perms(2, 2, 'ABCD');
+console.log('results from 2, 2, ABCD', results, results.length);
+*/

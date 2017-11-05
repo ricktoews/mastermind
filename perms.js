@@ -54,7 +54,6 @@ function build(base, length) {
         let numcode = pad(raw, length, '0');
         let perm = translate(numcode);
         perms.push(perm);
-        console.log(numcode, perm, qty);
     }
     return perms;
 }
